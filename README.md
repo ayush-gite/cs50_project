@@ -1,4 +1,3 @@
-# cs50_project
 TaskFlow Pro: A Visual Productivity Ecosystem
 Author: [Ayush Gite]
 Video Demo: [https://youtu.be/KkInPSB5rZY?si=yi4yKp-Gel7g4ont]
