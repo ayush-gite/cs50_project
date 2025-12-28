@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <h1 class="fw-bold">Your Workspace</h1>
+            <p class="text-muted">Stay organized and hit your deadlines.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-xl-7">
+            <div class="card mb-4 p-4 shadow-sm">
+                <h5 class="fw-bold mb-3">Add Quick Task</h5>
+                <form action="/add" method="post" class="row g-2">
+                    <div class="col-md-6"><input name="task" type="text" class="form-control" placeholder="What is the task?" required></div>
+                    <div class="col-md-3"><input name="due_date" type="date" class="form-control" required></div>
+                    <div class="col-md-3">
+                        <select name="priority" class="form-select">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary mt-3 fw-bold" type="submit">Create Task</button>
+                </form>
+            </div>
+
+            <div class="card shadow-sm overflow-hidden">
+                <div class="list-group list-group-flush">
+                    {% for task in tasks %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3 task-item priority-{{ task.priority }}">
+                        <div class="d-flex align-items-center">
+                            <a href="/toggle/{{ task.id }}" class="btn btn-sm me-3 {% if task.status == 'completed' %}btn-success{% else %}btn-outline-secondary{% endif %} rounded-circle">✓</a>
+                            <div>
+                                <h6 class="mb-0 {{ 'completed-text' if task.status == 'completed' }}">{{ task.task_name }}</h6>
+                                <small class="text-muted">{{ task.due_date }}</small>
+                            </div>
+                        </div>
+                        <a href="/delete/{{ task.id }}" class="text-danger opacity-50 text-decoration-none">✕</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-5">
+            <div class="card shadow-sm p-3">
+                <div id='calendar'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      themeSystem: 'standard',
+      height: 'auto',
+      events: [
+        {% for task in tasks %}
+        {
+          title: '{{ task.task_name }}',
+          start: '{{ task.due_date }}',
+          color: '{% if task.priority == "High" %}#e74a3b{% elif task.priority == "Medium" %}#f6c23e{% else %}#1cc88a{% endif %}'
+        },
+        {% endfor %}
+      ]
+    });
+    calendar.render();
+  });
+</script>
+{% endblock %}

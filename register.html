@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container text-center py-5">
+    <form action="/register" method="post" class="form-signin m-auto" style="max-width: 330px;">
+        <h1 class="h3 mb-3 fw-normal">Create Account</h1>
+        <input name="username" type="text" class="form-control mb-2" placeholder="Username" required>
+        <input name="password" type="password" class="form-control mb-3" placeholder="Password" required>
+        <button class="w-100 btn btn-lg btn-success" type="submit">Register</button>
+        {% if error %}<p class="text-danger mt-3">{{ error }}</p>{% endif %}
+    </form>
+</div>
+{% endblock %}

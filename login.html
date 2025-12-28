@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center p-0">
+    <div class="row g-0 shadow-lg rounded-4 overflow-hidden" style="width: 1000px; max-width: 95%; min-height: 600px;">
+        <div class="col-md-6 auth-side-bg d-none d-md-flex flex-column justify-content-center p-5">
+            <h1 class="display-5 fw-bold mb-4">Master Your Workflow.</h1>
+            <p class="lead opacity-75">The most intuitive way to manage tasks, track deadlines, and visualize your progress.</p>
+            <div class="mt-4 pt-4 border-top border-light border-opacity-25">
+                <small class="fw-bold">TRUSTED BY CS50 STUDENTS GLOBALLY</small>
+            </div>
+        </div>
+        <div class="col-md-6 bg-white p-5 d-flex flex-column justify-content-center">
+            <div class="mb-4">
+                <h2 class="fw-bold">Welcome Back</h2>
+                <p class="text-muted">Enter your credentials to access your dashboard.</p>
+            </div>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Username</label>
+                    <input name="username" type="text" class="form-control form-control-lg bg-light" placeholder="johndoe" required autofocus>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-bold">Password</label>
+                    <input name="password" type="password" class="form-control form-control-lg bg-light" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold rounded-3 shadow-sm">Sign In</button>
+            </form>
+            <p class="text-center mt-4 small text-muted">New here? <a href="/register" class="fw-bold text-decoration-none">Create an account</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

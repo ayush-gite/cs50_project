@@ -1,0 +1,53 @@
+/* Color Variables */
+:root {
+    --bg-color: #f8f9fc;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --nav-bg: #212529;
+    --border-color: #e3e6f0;
+    --primary: #4e73df;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --nav-bg: #000000;
+    --border-color: #333333;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--nav-bg) !important;
+}
+
+/* Ensure form inputs look good in dark mode */
+[data-theme="dark"] .form-control, [data-theme="dark"] .form-select {
+    background-color: #2b2b2b;
+    border-color: #444;
+    color: white;
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.auth-side-bg {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    color: white;
+}
